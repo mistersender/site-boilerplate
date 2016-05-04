@@ -2,24 +2,31 @@
 Something to get started with for creating new sites.
 All files are pushed to the `dist` folder.
 
-## Gulp
-To initialize the site, run `gulp`. This will install necessary folders. Should only need to run once.
-@todo- Probably can automate this with `npm install`
+## Quick Start
+```js
+$ npm install;
+$ gulp watch;
+```
 
-#### Primary Gulp Tasks
+## Gulp Tasks
+There are a lot more gulp tasks, but these are the ones to be concerned with on a daily basis
+
 - `gulp watch` - watches for changes (also issues clean & build commands)
 - `gulp build --production` - builds a more optimized `dist` directory for deploying.
 
-## HTML
+## What it does
+
+### HTML
 compiles `html` or `pug` templates (formerly `jade`)
 
-## JS
+### JS
 - compiles `es6`
 - sourcemaps added
 - minifies
 - renames to have `.min` in name
+- installs `jQuery` because I just can't quit it.
 
-## CSS
+### CSS
 - compiles `stylus`
 - adds sourcemaps
 - autoprefixer
@@ -27,5 +34,5 @@ compiles `html` or `pug` templates (formerly `jade`)
 - minifies
 - renames to have `.min` in name
 
-## Images
+### Images
 - auto-compresses images

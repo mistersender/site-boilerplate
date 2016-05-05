@@ -32,7 +32,7 @@ module.exports = function (gulp, $, globals) {
          .pipe(stylus(stylus_settings)) // run the stylus //.on('error', stylus.logError)
          .pipe(postcss(postcss_settings)) // run all postcss processing
          .pipe($.rename({ suffix: '.min' })) // rename our file to .min.css
-         .pipe($.sourcemaps.write('.')) // write our sourcemaps file to the destination
+         .pipe($.sourcemaps.write()) // write our sourcemaps file to the destination
          .pipe(gulp.dest(globals.destination_paths.lib)); // write our stylus file to it's destination
      }
 

@@ -24,7 +24,7 @@ module.exports = function (gulp, $, globals) {
          .pipe($.sourcemaps.init()) // create sourcemaps
          .pipe(babel(babel_settings))
          .pipe($.rename({ suffix: '.min' })) // rename our file to .min.css
-         .pipe($.sourcemaps.write('.')) // write our sourcemaps file to the destination
+         .pipe($.sourcemaps.write()) // write our sourcemaps file to the destination
          .pipe(gulp.dest(globals.destination_paths.lib)); // write our sass file to it's destination
       }
     },

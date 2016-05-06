@@ -23,6 +23,7 @@
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-connect": "^4.0.0",
     "gulp-filter": "^4.0.0",
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "^2.4.0",

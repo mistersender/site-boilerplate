@@ -3,6 +3,8 @@
 const gulp = require('gulp');
 const pkg = require('./package.json');
 const minimist = require('minimist');
+const connect = require('gulp-connect');
+const runSequence = require('run-sequence');
 
 // set up our defaults and options
 const options = minimist(process.argv.slice(2), {
@@ -92,9 +94,24 @@ for(var task in tasks) {
   gulp.task(task, tasks[task]);
 }
 
+// override the `watch` task so we can add connect in
+gulp.task('watch', function(callback){
+  return runSequence(
+    'startserver',
+    tasks.watch
+  );
+});
+
 // override the `build` task if we detect `--production` build attempt
 if(options.production) {
   gulp.task('build', plugins.runSequence(
     tasks.build
   ));
 }
+
+// And finally the connect task
+gulp.task('startserver', function() {
+  connect.server({
+    port: 8888
+  });
+});

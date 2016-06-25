@@ -1,0 +1,47 @@
+- var siteName = "Boilerplate"
+- var tagline = "Temlate"
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title #{siteName}, #{tagline}
+    meta(name='HandheldFriendly', content='True')
+    meta(name='MobileOptimized', content='320')
+    meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes, minimal-ui')
+    meta(http-equiv='cleartype', content='on')
+    meta(name='format-detection', content='telephone=no')
+    meta(name='description', content=siteName)
+    meta(http-equiv='Cache-control', content='public')
+    link(href='https://plus.google.com/+mistersender', rel='publisher')
+    each size in [57, 60, 72, 76, 114, 120, 144, 152, 180]
+      link(rel='apple-touch-icon', sizes=size + 'x' + size, href='assets/images/favicons/apple-touch-icon-' + size + 'x' + size + '.png')
+    link(rel='icon', type='image/png', href='assets/images/favicons/favicon-32x32.png', sizes='32x32')
+    link(rel='icon', type='image/png', href='assets/images/favicons/android-chrome-192x192.png', sizes='192x192')
+    link(rel='icon', type='image/png', href='assets/images/favicons/favicon-96x96.png', sizes='96x96')
+    link(rel='icon', type='image/png', href='assets/images/favicons/favicon-16x16.png', sizes='16x16')
+    link(rel='manifest', href='assets/images/favicons/manifest.json')
+    link(rel='mask-icon', href='assets/images/favicons/safari-pinned-tab.svg', color='#5bbad5')
+    link(rel='shortcut icon', href='assets/images/favicons/favicon.ico')
+    meta(name='apple-mobile-web-app-title', content=siteName)
+    meta(name='application-name', content=siteName)
+    meta(name='msapplication-TileColor', content='#da532c')
+    meta(name='msapplication-TileImage', content='assets/images/favicons/mstile-144x144.png')
+    meta(name='msapplication-config', content='assets/images/favicons/browserconfig.xml')
+    meta(name='theme-color', content='#ffffff')
+    link(rel='stylesheet', href='lib/normalize.min.css')
+    link(rel='stylesheet', href='lib/site.min.css')
+  body(itemscope='', itemtype='http://schema.org/WebPage')
+    header.s-header
+      .o-wrapper
+        img.s-header__logo(src='assets/images/me.jpg', srcset='assets/images/me.jpg 1x, assets/images/me@2x.jpg 2x, assets/images/me@3x.jpg 3x')
+
+        h1.s-header__name #{siteName}
+
+        aside.s-header__tagline #{tagline}
+
+
+    footer.s-footer
+      | &copy; 2016 #{siteName}
+
+    script(src='assets/js/site.min.js')

@@ -1,0 +1,19 @@
+.c-label {
+  padding-top: .6em;
+  padding-right: 15px;
+  margin-top: 0; //override
+
+  &--required {
+    &:after{
+      font-awesome(.8em);
+      content: "\f005";
+      color: get-color('primary');
+      position: absolute;
+      top: 1.3em;
+      right: .2em;
+    }
+  }
+  &--legend {
+    color: get-color('primary');
+  }
+}

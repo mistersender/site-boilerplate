@@ -10,10 +10,17 @@ var stylus_settings = { outputStyle: 'expanded' };
 var postcss_settings = [ prefixer, mqpacker ];
 
 module.exports = function (gulp, $, globals) {
+  var path = {
+    src: [
+      'node_modules/normalize.css/normalize.css',
+      'app/lib/stylus/site.styl'
+    ]
+  }
+
   return {
     default: function() {
      if(globals.options.production) {
-       gulp.src([`./${globals.local_paths.lib}/**/*.{${globals.lib_included_files.css}}`])
+       gulp.src(path.src)
          .pipe(stylus(stylus_settings).on('error', stylus.logError)) // run the stylus
          .pipe(postcss(postcss_settings)) // run all postcss processing
          .pipe(gulp.dest(globals.destination_paths.lib)) // push the expanded to the destination
@@ -27,7 +34,7 @@ module.exports = function (gulp, $, globals) {
          .pipe(gulp.dest(globals.destination_paths.lib)); // write our minified stylus file to it's destination
      }
      else {
-       gulp.src([`./${globals.local_paths.lib}/**/*.{${globals.lib_included_files.css}}`])
+       gulp.src(path.src)
          .pipe($.sourcemaps.init()) // create sourcemaps
          .pipe(stylus(stylus_settings)) // run the stylus //.on('error', stylus.logError)
          .pipe(postcss(postcss_settings)) // run all postcss processing

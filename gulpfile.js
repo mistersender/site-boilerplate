@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const pkg = require('./package.json');
 const minimist = require('minimist');
-const connect = require('gulp-connect');
 const runSequence = require('run-sequence');
 
 // set up our defaults and options
@@ -14,24 +13,25 @@ const options = minimist(process.argv.slice(2), {
 });
 
 // these are used by our gulp tasks
-const plugins = {
+const $ = {
   spawn: require('child_process').spawnSync,
   chalk: require('chalk'),
   runSequence: require('run-sequence'),
   del: require('del'),
   rename: require('gulp-rename'),
   if: require('gulp-if'),
-  sourcemaps: require('gulp-sourcemaps')
+  sourcemaps: require('gulp-sourcemaps'),
+  connect: require('gulp-connect')
 }
 const globals = {
   options: options,
   dry_run: false,
   destination_paths: {
-    view: `dist/view`,
+    view: `dist`,
     lib: `dist/lib`
   },
   local_paths: {
-    view: `app/view`,
+    view: `app`,
     lib: `app/lib`
   },
   lib_included_files: { // what files should we run special gulp building on for each type of lib item?
@@ -44,7 +44,7 @@ const globals = {
 // get the abstracted gulp tasks so we can keep our logic for each thing separated out
 function getTask(task, subtask) {
   let sub = subtask || 'default';
-  let tasks = require('./gulp_tasks/' + task)(gulp, plugins, globals);
+  let tasks = require('./gulp_tasks/' + task)(gulp, $, globals);
   if(tasks[sub]){
    return tasks[sub];
   }
@@ -97,21 +97,22 @@ for(var task in tasks) {
 // override the `watch` task so we can add connect in
 gulp.task('watch', function(callback){
   return runSequence(
-    'startserver',
+    'serve',
     tasks.watch
   );
 });
 
 // override the `build` task if we detect `--production` build attempt
 if(options.production) {
-  gulp.task('build', plugins.runSequence(
+  gulp.task('build', $.runSequence(
     tasks.build
   ));
 }
 
 // And finally the connect task
-gulp.task('startserver', function() {
-  connect.server({
-    port: 8888
+gulp.task('serve', function() {
+  $.connect.server({
+    port: 8888,
+    livereload: true
   });
 });

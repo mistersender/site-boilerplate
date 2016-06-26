@@ -29,19 +29,14 @@ html
     meta(name='msapplication-TileImage', content='assets/images/favicons/mstile-144x144.png')
     meta(name='msapplication-config', content='assets/images/favicons/browserconfig.xml')
     meta(name='theme-color', content='#ffffff')
-    link(rel='stylesheet', href='lib/normalize.min.css')
-    link(rel='stylesheet', href='lib/site.min.css')
+    link(rel='stylesheet', href='../lib/css/normalize.css')
+    link(rel='stylesheet', href='../lib/css/site.css')
   body(itemscope='', itemtype='http://schema.org/WebPage')
-    header.s-header
-      .o-wrapper
-        img.s-header__logo(src='assets/images/me.jpg', srcset='assets/images/me.jpg 1x, assets/images/me@2x.jpg 2x, assets/images/me@3x.jpg 3x')
 
-        h1.s-header__name #{siteName}
+    include ./_header.pug
 
-        aside.s-header__tagline #{tagline}
+    block content
 
-
-    footer.s-footer
-      | &copy; 2016 #{siteName}
+    include ./_footer.pug
 
     script(src='assets/js/site.min.js')

@@ -20,27 +20,24 @@ module.exports = function (gulp, $, globals) {
   return {
     default: function() {
      if(globals.options.production) {
+
+       postcss_settings.push(cssmin({
+         preserveHacks: true,
+         removeAllComments: true
+       }))
+
        gulp.src(path.src)
          .pipe(stylus(stylus_settings).on('error', stylus.logError)) // run the stylus
          .pipe(postcss(postcss_settings)) // run all postcss processing
-         .pipe(gulp.dest(globals.destination_paths.lib)) // push the expanded to the destination
-         .pipe(postcss([ // minify the css
-           cssmin({
-             preserveHacks: true,
-             removeAllComments: true
-           })
-         ]))
-         .pipe($.rename({ suffix: '.min' })) // rename our file to .min.css
-         .pipe(gulp.dest(globals.destination_paths.lib)); // write our minified stylus file to it's destination
+         .pipe(gulp.dest(globals.destination_paths.lib + '/css')); // write our minified stylus file to it's destination
      }
      else {
        gulp.src(path.src)
          .pipe($.sourcemaps.init()) // create sourcemaps
          .pipe(stylus(stylus_settings)) // run the stylus //.on('error', stylus.logError)
          .pipe(postcss(postcss_settings)) // run all postcss processing
-         .pipe($.rename({ suffix: '.min' })) // rename our file to .min.css
          .pipe($.sourcemaps.write()) // write our sourcemaps file to the destination
-         .pipe(gulp.dest(globals.destination_paths.lib)); // write our stylus file to it's destination
+         .pipe(gulp.dest(globals.destination_paths.lib + '/css')); // write our stylus file to it's destination
      }
 
     },
